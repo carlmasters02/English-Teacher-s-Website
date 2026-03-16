@@ -168,6 +168,7 @@ ul { list-style: none; }
   display: flex;
   gap: 6px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -177,6 +178,7 @@ ul { list-style: none; }
   padding: 7px 14px;
   border-radius: 8px;
   transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
 }
 .nav-links a:hover,
 .nav-links a.active {
@@ -678,6 +680,12 @@ footer {
   font-size: 0.97rem;
   margin-bottom: 12px;
 }
+
+.about-intro img {
+  width: min(220px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
 .credentials-list {
   display: flex;
   flex-direction: column;
@@ -797,6 +805,20 @@ footer {
   .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .hero h1 { font-size: 2.3rem; }
+  .navbar {
+    height: auto;
+    min-height: var(--nav-h);
+    padding: 12px 0;
+  }
+  .navbar .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .nav-links {
+    width: 100%;
+    gap: 8px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -805,11 +827,199 @@ footer {
   .footer-grid { grid-template-columns: 1fr; }
   .hero { padding: 64px 0 56px; }
   .hero h1 { font-size: 1.9rem; }
+  .hero p { font-size: 1rem; }
   .section { padding: 56px 0; }
   .section-title { font-size: 1.65rem; }
+  .section-subtitle { margin-bottom: 32px; font-size: 0.98rem; }
   .about-intro { flex-direction: column; align-items: flex-start; gap: 28px; }
-  .nav-links .btn { display: none; }
+  .container { padding: 0 16px; }
+  .navbar { padding: 10px 0 12px; }
+  .nav-logo { font-size: 1.15rem; }
+  .nav-links {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-size: 0.86rem;
+    padding: 8px 10px;
+    flex-shrink: 0;
+  }
+  .nav-links .btn {
+    display: inline-block;
+    padding: 8px 14px;
+  }
+  .hero-cta {
+    flex-direction: column;
+  }
+  .hero-cta .btn {
+    width: 100%;
+  }
+  .card,
+  .pricing-card,
+  .testimonial,
+  .sidebar-card,
+  .form-card {
+    padding: 24px 20px;
+  }
+  .pricing-card.featured::before {
+    top: -12px;
+    font-size: 0.68rem;
+    padding: 4px 12px;
+  }
+  .pricing-price {
+    font-size: 2.15rem;
+  }
+  .page-hero {
+    padding: 48px 0 40px;
+  }
+  .page-hero h1 {
+    font-size: 1.95rem;
+  }
+  .page-hero p {
+    font-size: 0.98rem;
+  }
+  .stats-bar {
+    padding: 24px 0;
+  }
+  .stats-bar .container {
+    gap: 18px;
+  }
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  .stat-label {
+    font-size: 0.76rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .section .card[style*="display:flex"] {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .section .card[style*="display:flex"] > a.btn {
+    width: 100%;
+    align-self: stretch !important;
+  }
+  .section table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .section table tbody,
+  .section table tr {
+    display: block;
+    width: 100%;
+  }
+  .section table tr {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section table td {
+    display: block;
+    width: 100%;
+    padding: 6px 16px !important;
+    text-align: left !important;
+  }
   .back-to-top { right: 16px; bottom: 16px; }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding: 0 14px;
+  }
+  .nav-logo {
+    font-size: 1.02rem;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    padding: 7px 9px;
+  }
+  .hero {
+    padding: 56px 0 48px;
+  }
+  .hero-tag {
+    font-size: 0.74rem;
+    letter-spacing: 0.6px;
+    padding: 5px 10px;
+  }
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+  .hero p,
+  .page-hero p,
+  .section-subtitle,
+  .cta-band p {
+    font-size: 0.94rem;
+  }
+  .page-hero h1,
+  .cta-band h2,
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .card,
+  .pricing-card,
+  .testimonial,
+  .sidebar-card,
+  .form-card,
+  .payment-method,
+  .policy-box {
+    padding: 20px 16px;
+  }
+  .pricing-price {
+    font-size: 1.9rem;
+  }
+  .payment-method {
+    gap: 14px;
+  }
+  .payment-method-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+  .stat-number {
+    font-size: 1.55rem;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+  }
+  .footer-brand p,
+  .footer-links a,
+  .footer-contact-item,
+  .footer-bottom p {
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-links a {
+    font-size: 0.78rem;
+    padding: 6px 8px;
+  }
+  .nav-links .btn {
+    padding: 7px 12px;
+  }
+  .hero h1 {
+    font-size: 1.55rem;
+  }
+  .page-hero h1,
+  .cta-band h2,
+  .section-title {
+    font-size: 1.36rem;
+  }
+  .pricing-card.featured::before {
+    font-size: 0.62rem;
+    padding: 4px 10px;
+  }
+  .section table td {
+    padding: 6px 12px !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
