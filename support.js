@@ -1,4 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
+	setupMobileNavToggle();
 	setupLanguageSwitch();
 	setupActiveNavLink();
 	setupScrollProgressBar();
@@ -6,6 +7,52 @@
 	setupRevealAnimations();
 	setupEnrollForm();
 });
+
+function setupMobileNavToggle() {
+	const nav = document.querySelector('.navbar');
+	const navContainer = nav ? nav.querySelector('.container') : null;
+	const navLinks = nav ? nav.querySelector('.nav-links') : null;
+	if (!navContainer || !navLinks) return;
+
+	if (!navLinks.id) {
+		navLinks.id = 'site-nav-links';
+	}
+
+	const toggleBtn = document.createElement('button');
+	toggleBtn.type = 'button';
+	toggleBtn.className = 'nav-toggle';
+	toggleBtn.setAttribute('aria-label', 'Toggle navigation menu');
+	toggleBtn.setAttribute('aria-expanded', 'false');
+	toggleBtn.setAttribute('aria-controls', navLinks.id);
+	toggleBtn.innerHTML = '<span></span><span></span><span></span>';
+
+	navContainer.insertBefore(toggleBtn, navLinks);
+
+	const closeMenu = () => {
+		navLinks.classList.remove('is-open');
+		toggleBtn.classList.remove('is-open');
+		toggleBtn.setAttribute('aria-expanded', 'false');
+	};
+
+	toggleBtn.addEventListener('click', () => {
+		const willOpen = !navLinks.classList.contains('is-open');
+		navLinks.classList.toggle('is-open', willOpen);
+		toggleBtn.classList.toggle('is-open', willOpen);
+		toggleBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+	});
+
+	navLinks.addEventListener('click', (event) => {
+		if (event.target.closest('a')) {
+			closeMenu();
+		}
+	});
+
+	window.addEventListener('resize', () => {
+		if (window.innerWidth > 640) {
+			closeMenu();
+		}
+	});
+}
 
 function setupActiveNavLink() {
 	const navLinks = Array.from(document.querySelectorAll('.nav-links a[href]')).filter((link) => {
