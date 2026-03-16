@@ -934,6 +934,12 @@ footer {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+  .payment-methods-grid {
+    gap: 0;
+  }
+  .policy-grid {
+    gap: 0;
+  }
   .pricing-title,
   .pricing-desc,
   .pricing-price,
