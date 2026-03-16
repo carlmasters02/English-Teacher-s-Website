@@ -211,9 +211,32 @@ function setupEnrollForm() {
 	const form = document.getElementById('enrollForm');
 	const success = document.getElementById('successMsg');
 	if (!form || !success) return;
+	const interestInputs = Array.from(form.querySelectorAll('input[name="interest"][type="checkbox"]'));
+	const currentPage = window.location.pathname.split('/').pop() || '';
+	const isEnglish = currentPage.startsWith('en_');
+
+	const validateInterestGroup = () => {
+		if (!interestInputs.length) return true;
+		const hasSelection = interestInputs.some((input) => input.checked);
+		const message = hasSelection
+			? ''
+			: isEnglish
+				? 'Please select at least one option in "I\'m Interested In".'
+				: 'Vui lòng chọn ít nhất một mục trong phần "Tôi quan tâm đến...".';
+
+		interestInputs[0].setCustomValidity(message);
+		return hasSelection;
+	};
+
+	interestInputs.forEach((input) => {
+		input.addEventListener('change', () => {
+			validateInterestGroup();
+		});
+	});
 
 	form.addEventListener('submit', (event) => {
 		event.preventDefault();
+		validateInterestGroup();
 		if (!form.checkValidity()) {
 			form.reportValidity();
 			return;
