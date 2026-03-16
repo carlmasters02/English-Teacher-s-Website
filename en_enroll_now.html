@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
+  <meta http-equiv="Content-Language" content="en" />
+  <title>Enroll Now - Kady's English Lessons</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .enroll-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .enroll-wrapper { grid-template-columns: 1fr; }
+    }
+    .enroll-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 20px);
+    }
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .sidebar-card h3 {
+      font-size: 1.05rem;
+      color: var(--primary-dk);
+      margin-bottom: 14px;
+    }
+    .check-list { display: flex; flex-direction: column; gap: 10px; }
+    .check-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      align-items: flex-start;
+    }
+    .check-list li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 480px) {
+      .form-card { padding: 24px 18px; }
+    }
+    .form-section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--primary-dk);
+      border-bottom: 2px solid var(--primary-lt);
+      padding-bottom: 8px;
+      margin: 28px 0 18px;
+    }
+    .form-section-title:first-of-type { margin-top: 0; }
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-option, .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.93rem;
+    }
+    .radio-option:hover, .checkbox-option:hover {
+      border-color: var(--primary);
+      background: var(--primary-lt);
+    }
+    .radio-option input, .checkbox-option input {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+    .success-msg {
+      display: none;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      text-align: center;
+      color: #2e7d32;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="en_home.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="27" height="18" style="vertical-align:middle; margin-right:9px; border-radius:3px; flex-shrink:0;"><rect width="30" height="20" fill="#da251d"/><polygon points="15,3 16.8,7.6 21.7,7.8 17.9,10.9 19.1,15.7 15,13 10.9,15.7 12.1,10.9 8.3,7.8 13.2,7.6" fill="#ffff00"/></svg>Kady's <span>English</span></a>
+      <ul class="nav-links">
+        <li><a href="en_home.html">Home</a></li>
+        <li><a href="en_about_the_teacher.html">About</a></li>
+        <li><a href="en_class_options.html">Classes</a></li>
+        <li><a href="en_payment_options.html">Pricing</a></li>
+        <li><a href="en_enroll_now.html" class="btn btn-primary active">Enroll Now</a></li>
+        <li class="lang-switch"><a href="#" data-lang="vi">VI</a><a href="#" data-lang="en">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ======== PAGE HERO ======== -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Enroll Now</h1>
+      <p>Fill in the form below and I'll be in touch within 24 hours to get you started.</p>
+    </div>
+  </section>
+
+  <!-- ======== ENROLL FORM ======== -->
+  <section class="section" style="background: var(--bg);">
+    <div class="container">
+      <div class="enroll-wrapper">
+
+        <!-- FORM -->
+        <div class="form-card">
+          <h2 style="font-size:1.5rem; color:var(--primary-dk); margin-bottom:6px;">Tell Me About Yourself</h2>
+          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:28px;">All fields marked <span style="color:#e55;">*</span> are required. Your information will never be shared with third parties.</p>
+
+          <form id="enrollForm" novalidate>
+
+            <p class="form-section-title">Personal Details</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name <span style="color:#e55;">*</span></label>
+                <input type="text" id="firstName" name="firstName" placeholder="e.g. Minh" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name <span style="color:#e55;">*</span></label>
+                <input type="text" id="lastName" name="lastName" placeholder="e.g. Nguyen" required autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address <span style="color:#e55;">*</span></label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone / WhatsApp</label>
+                <input type="tel" id="phone" name="phone" placeholder="+84 9xx xxx xxx" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="age">Student Grade</label>
+              <select id="age" name="age">
+                <option value="" disabled selected>Select...</option>
+                <option>Grade 6</option>
+                <option>Grade 7</option>
+                <option>Grade 8</option>
+                <option>Grade 9</option>
+                <option>Grade 10</option>
+                <option>Grade 11</option>
+                <option>Grade 12</option>
+              </select>
+            </div>
+
+            <p class="form-section-title">English Level &amp; Goals</p>
+            <div class="form-group">
+              <label>Current School Stage <span style="color:#e55;">*</span></label>
+              <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="level" value="Lower Secondary (Grade 6-9)" required /> Lower Secondary (Grade 6-9)</label>
+                <label class="radio-option"><input type="radio" name="level" value="High School (Grade 10-11)" /> High School (Grade 10-11)</label>
+                <label class="radio-option"><input type="radio" name="level" value="Grade 12 National Exam Track" /> Grade 12 National Exam Track</label>
+                <label class="radio-option"><input type="radio" name="level" value="Not sure" /> I'm not sure - please assess my current level</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>I'm Interested In... (select all that apply)</label>
+              <div class="checkbox-group">
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="One-to-One at Teacher Location" /> One-to-One at Teacher's Location</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Small Group at Teacher Location" /> Small Group at Teacher's Location (2-4 students)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="One-to-One at Student Residence" /> One-to-One at Student Residence</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="National Exam Preparation" /> National Exam Preparation (English)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Grammar and Vocabulary" /> Grammar and Vocabulary Strengthening</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Reading and Writing Skills" /> Reading and Writing Skills</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="School Test Improvement" /> School Test Improvement (Grades 6-12)</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="goals">What are your main English goals? <span style="color:#e55;">*</span></label>
+              <textarea id="goals" name="goals" placeholder="e.g. I want to improve my Grade 12 English score for the national exam, especially grammar and reading..." required></textarea>
+            </div>
+
+            <p class="form-section-title">Scheduling Preferences</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="frequency">How often would you like lessons?</label>
+                <select id="frequency" name="frequency">
+                  <option value="" disabled selected>Select...</option>
+                  <option>Once a week</option>
+                  <option>Twice a week</option>
+                  <option>Three times a week</option>
+                  <option>Intensive (daily, short-term)</option>
+                  <option>Flexible / unsure</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="format">Preferred Format</label>
+                <select id="format" name="format">
+                  <option value="" disabled selected>Select...</option>
+                  <option>One-to-One at Teacher's Location</option>
+                  <option>Small Group at Teacher's Location (2-4 students)</option>
+                  <option>One-to-One at Student Residence</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="availability">Best times for lessons</label>
+              <input type="text" id="availability" name="availability" placeholder="e.g. Weekday evenings after 6 pm, or Saturday mornings" />
+            </div>
+
+            <p class="form-section-title">Anything Else?</p>
+            <div class="form-group">
+              <label for="message">Additional notes or questions</label>
+              <textarea id="message" name="message" placeholder="Anything you'd like me to know before we start..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-top:8px;">
+              <label class="checkbox-option" style="border:none; padding:0; gap:12px; font-size:0.85rem; color:var(--text-muted);">
+                <input type="checkbox" name="consent" required style="accent-color:var(--primary); width:16px; height:16px; flex-shrink:0;" />
+                I agree that Kady may contact me by email or phone regarding my enquiry. I understand my data will be used only for this purpose.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-accent submit-btn">Send My Enrollment Request -></button>
+            <p class="form-note">Your information is completely secure and will never be sold or shared.</p>
+          </form>
+
+          <div class="success-msg" id="successMsg">
+            Thank you! Your request has been received. Kady will be in touch within 24 hours.
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="enroll-sidebar">
+          <div class="sidebar-card">
+            <h3>What Happens Next</h3>
+            <ul class="check-list">
+              <li>Kady reviews your form (usually within a few hours)</li>
+              <li>You receive a reply with available times for a free trial lesson</li>
+              <li>You attend your 30-minute free discovery session</li>
+              <li>If you're happy, you choose a plan and start lessons!</li>
+            </ul>
+          </div>
+          <div class="sidebar-card">
+            <h3>Free Trial Lesson</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">Every new student receives a <strong>free 30-minute trial lesson</strong>. No commitment, no payment required. It's a chance for us to meet, assess your level, and see if we're a good fit.</p>
+          </div>
+          <div class="sidebar-card">
+            <h3>Prefer to Chat First?</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px; line-height:1.7;">That's totally fine! Drop me a message via email or WhatsApp and we can have a quick call before you commit to anything.</p>
+            <p style="font-size:0.9rem;"><strong>Email:</strong> luongkhadoanh0210@gmail.com</p>
+            <p style="font-size:0.9rem; margin-top:6px;"><strong>Phone:</strong> +84 942 100 829</p>
+          </div>
+          <div class="sidebar-card" style="background:var(--primary-lt); border-color:var(--primary);">
+            <div class="stars">★★★★★</div>
+            <p style="font-style:italic; font-family:'Lora',serif; font-size:0.95rem; color:var(--text); margin-bottom:12px; line-height:1.7;">"Enrolling was so easy and Kady replied within hours. Best decision I made for my English!"</p>
+            <div style="font-weight:600; font-size:0.85rem; color:var(--primary-dk);">Tran Minh A. - Grade 10 Student, Can Tho</div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="en_home.html" class="nav-logo">Kady's <span>English</span></a>
+          <p>Specialist English tuition for Grades 6-12 students in Can Tho, Vietnam.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="en_home.html">Home</a></li>
+            <li><a href="en_about_the_teacher.html">About Kady</a></li>
+            <li><a href="en_class_options.html">Class Options</a></li>
+            <li><a href="en_payment_options.html">Pricing &amp; Payment</a></li>
+            <li><a href="en_enroll_now.html">Enroll Now</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Get in Touch</h4>
+          <div class="footer-contact-item">Email: luongkhadoanh0210@gmail.com</div>
+          <div class="footer-contact-item">Phone: +84 942 100 829</div>
+          <div class="footer-contact-item">Location: Can Tho, Vietnam</div>
+          <div class="footer-contact-item">Hours: Mon-Sun, 7:30 am - 9:00 pm (ICT)</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Kady's English Lessons. All rights reserved.</p>
+        <p>Made with love for students of all levels.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="support.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
+  <meta http-equiv="Content-Language" content="vi" />
+  <title>Dang Ky - Lop Tieng Anh Kady</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .enroll-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .enroll-wrapper { grid-template-columns: 1fr; }
+    }
+    .enroll-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 20px);
+    }
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .sidebar-card h3 {
+      font-size: 1.05rem;
+      color: var(--primary-dk);
+      margin-bottom: 14px;
+    }
+    .check-list { display: flex; flex-direction: column; gap: 10px; }
+    .check-list li {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      align-items: flex-start;
+    }
+    .check-list li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 480px) {
+      .form-card { padding: 24px 18px; }
+    }
+    .form-section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--primary-dk);
+      border-bottom: 2px solid var(--primary-lt);
+      padding-bottom: 8px;
+      margin: 28px 0 18px;
+    }
+    .form-section-title:first-of-type { margin-top: 0; }
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-option, .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.93rem;
+    }
+    .radio-option:hover, .checkbox-option:hover {
+      border-color: var(--primary);
+      background: var(--primary-lt);
+    }
+    .radio-option input, .checkbox-option input {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+    .success-msg {
+      display: none;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      text-align: center;
+      color: #2e7d32;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="home.html" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="27" height="18" style="vertical-align:middle; margin-right:9px; border-radius:3px; flex-shrink:0;"><rect width="30" height="20" fill="#da251d"/><polygon points="15,3 16.8,7.6 21.7,7.8 17.9,10.9 19.1,15.7 15,13 10.9,15.7 12.1,10.9 8.3,7.8 13.2,7.6" fill="#ffff00"/></svg>Kady's <span>English</span></a>
+      <ul class="nav-links">
+        <li><a href="home.html">Trang Chu</a></li>
+        <li><a href="about_the_teacher.html">Gioi Thieu</a></li>
+        <li><a href="class_options.html">Lop Hoc</a></li>
+        <li><a href="payment_options.html">Hoc Phi</a></li>
+        <li><a href="enroll_now.html" class="btn btn-primary active">Dang Ky</a></li>
+        <li class="lang-switch"><a href="#" data-lang="vi">VI</a><a href="#" data-lang="en">EN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ======== PAGE HERO ======== -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Dang Ky Ngay</h1>
+      <p>Vui long dien thong tin ben duoi. Kady se lien he trong vong 24 gio.</p>
+    </div>
+  </section>
+
+  <!-- ======== ENROLL FORM ======== -->
+  <section class="section" style="background: var(--bg);">
+    <div class="container">
+      <div class="enroll-wrapper">
+
+        <!-- FORM -->
+        <div class="form-card">
+          <h2 style="font-size:1.5rem; color:var(--primary-dk); margin-bottom:6px;">Hay cho Kady biet ve ban</h2>
+          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:28px;">Tat ca truong co dau <span style="color:#e55;">*</span> la bat buoc. Thong tin cua ban se khong duoc chia se cho ben thu ba.</p>
+
+          <form id="enrollForm" novalidate>
+
+            <p class="form-section-title">Thong tin ca nhan</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">Ten <span style="color:#e55;">*</span></label>
+                <input type="text" id="firstName" name="firstName" placeholder="e.g. Minh" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Ho <span style="color:#e55;">*</span></label>
+                <input type="text" id="lastName" name="lastName" placeholder="e.g. Nguyen" required autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Dia chi email <span style="color:#e55;">*</span></label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Dien thoai / Zalo</label>
+                <input type="tel" id="phone" name="phone" placeholder="+84 9xx xxx xxx" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="age">Khoi lop cua hoc sinh</label>
+              <select id="age" name="age">
+                <option value="" disabled selected>Chon...</option>
+                <option>Lop 6</option>
+                <option>Lop 7</option>
+                <option>Lop 8</option>
+                <option>Lop 9</option>
+                <option>Lop 10</option>
+                <option>Lop 11</option>
+                <option>Lop 12</option>
+              </select>
+            </div>
+
+            <p class="form-section-title">Trinh do Tieng Anh va muc tieu</p>
+            <div class="form-group">
+              <label>Cap hoc hien tai <span style="color:#e55;">*</span></label>
+              <div class="radio-group">
+                <label class="radio-option"><input type="radio" name="level" value="THCS (lop 6-9)" required /> THCS (lop 6-9)</label>
+                <label class="radio-option"><input type="radio" name="level" value="THPT (lop 10-11)" /> THPT (lop 10-11)</label>
+                <label class="radio-option"><input type="radio" name="level" value="On thi quoc gia lop 12" /> On thi quoc gia lop 12</label>
+                <label class="radio-option"><input type="radio" name="level" value="Not sure" /> Toi chua chac - vui long danh gia trinh do hien tai</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Toi quan tam den... (co the chon nhieu)</label>
+              <div class="checkbox-group">
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="1 kem 1 tai dia diem giao vien" /> 1 kem 1 tai dia diem giao vien</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Nhom nho tai dia diem giao vien" /> Nhom nho tai dia diem giao vien (2-4 hoc sinh)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="1 kem 1 tai nha hoc sinh" /> 1 kem 1 tai nha hoc sinh</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="National Exam Preparation" /> On thi quoc gia mon Tieng Anh</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Grammar and Vocabulary" /> Cuong co ngu phap va tu vung</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Ky nang doc va viet" /> Ky nang doc va viet</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="School Test Improvement" /> Nang cao diem kiem tra tren lop (lop 6-12)</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="goals">Muc tieu hoc Tieng Anh chinh cua ban la gi? <span style="color:#e55;">*</span></label>
+              <textarea id="goals" name="goals" placeholder="Vi du: Toi muon cai thien diem Tieng Anh lop 12 de thi quoc gia, dac biet la ngu phap va doc hieu..." required></textarea>
+            </div>
+
+            <p class="form-section-title">Mong muon ve lich hoc</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="frequency">Ban muon hoc voi tan suat nhu the nao?</label>
+                <select id="frequency" name="frequency">
+                  <option value="" disabled selected>Chon...</option>
+                  <option>1 buoi/tuan</option>
+                  <option>2 buoi/tuan</option>
+                  <option>3 buoi/tuan</option>
+                  <option>Tang cuong (hang ngay, ngan han)</option>
+                  <option>Linh hoat / chua chac</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="format">Hinh thuc hoc mong muon</label>
+                <select id="format" name="format">
+                  <option value="" disabled selected>Chon...</option>
+                  <option>1 kem 1 tai dia diem giao vien</option>
+                  <option>Nhom nho tai dia diem giao vien (2-4 hoc sinh)</option>
+                  <option>1 kem 1 tai nha hoc sinh</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="availability">Thoi gian hoc phu hop nhat</label>
+              <input type="text" id="availability" name="availability" placeholder="Vi du: Toi cac ngay trong tuan sau 18:00 hoac sang thu Bay" />
+            </div>
+
+            <p class="form-section-title">Thong tin bo sung</p>
+            <div class="form-group">
+              <label for="message">Ghi chu hoac cau hoi them</label>
+              <textarea id="message" name="message" placeholder="Bat ky dieu gi ban muon Kady biet truoc khi bat dau..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-top:8px;">
+              <label class="checkbox-option" style="border:none; padding:0; gap:12px; font-size:0.85rem; color:var(--text-muted);">
+                <input type="checkbox" name="consent" required style="accent-color:var(--primary); width:16px; height:16px; flex-shrink:0;" />
+                Toi dong y de Kady lien he qua email hoac dien thoai ve yeu cau cua toi. Toi hieu du lieu cua toi chi duoc dung cho muc dich nay.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-accent submit-btn">Gui yeu cau dang ky -></button>
+            <p class="form-note">Thong tin cua ban duoc bao mat va se khong bi ban hoac chia se.</p>
+          </form>
+
+          <div class="success-msg" id="successMsg">
+            Cam on ban! Kady da nhan duoc yeu cau va se lien he trong vong 24 gio.
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="enroll-sidebar">
+          <div class="sidebar-card">
+            <h3>Quy trinh tiep theo</h3>
+            <ul class="check-list">
+              <li>Kady xem thong tin cua ban (thuong trong vai gio)</li>
+              <li>Ban nhan duoc phan hoi ve khung gio hoc thu mien phi</li>
+              <li>Ban tham gia buoi hoc thu 30 phut</li>
+              <li>Neu phu hop, ban chon goi hoc va bat dau!</li>
+            </ul>
+          </div>
+          <div class="sidebar-card">
+            <h3>Buoi hoc thu mien phi</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.7;">Moi hoc sinh moi deu co <strong>buoi hoc thu 30 phut mien phi</strong>. Khong rang buoc, khong can thanh toan. Day la co hoi de lam quen, danh gia trinh do va xem co phu hop hay khong.</p>
+          </div>
+          <div class="sidebar-card">
+            <h3>Ban muon trao doi truoc?</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px; line-height:1.7;">Hoan toan duoc! Ban co the nhan tin qua email hoac dien thoai de trao doi nhanh truoc khi quyet dinh.</p>
+            <p style="font-size:0.9rem;"><strong>Email:</strong> luongkhadoanh0210@gmail.com</p>
+            <p style="font-size:0.9rem; margin-top:6px;"><strong>Dien thoai:</strong> +84 942 100 829</p>
+          </div>
+          <div class="sidebar-card" style="background:var(--primary-lt); border-color:var(--primary);">
+            <div class="stars">★★★★★</div>
+            <p style="font-style:italic; font-family:'Lora',serif; font-size:0.95rem; color:var(--text); margin-bottom:12px; line-height:1.7;">"Dang ky rat de va Kady phan hoi rat nhanh. Day la quyet dinh tot nhat cho viec hoc Tieng Anh cua em!"</p>
+            <div style="font-weight:600; font-size:0.85rem; color:var(--primary-dk);">Tran Minh A. - Hoc sinh lop 10, Can Tho</div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="home.html" class="nav-logo">Kady's <span>English</span></a>
+          <p>Gia su Tieng Anh cho hoc sinh lop 6-12 tai Can Tho, Viet Nam.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Lien Ket Nhanh</h4>
+          <ul class="footer-links">
+            <li><a href="home.html">Trang Chu</a></li>
+            <li><a href="about_the_teacher.html">Gioi Thieu Kady</a></li>
+            <li><a href="class_options.html">Hinh Thuc Lop</a></li>
+            <li><a href="payment_options.html">Hoc Phi &amp; Thanh Toan</a></li>
+            <li><a href="enroll_now.html">Dang Ky</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Lien He</h4>
+          <div class="footer-contact-item">Email: luongkhadoanh0210@gmail.com</div>
+          <div class="footer-contact-item">Dien thoai: +84 942 100 829</div>
+          <div class="footer-contact-item">Dia diem: Can Tho, Viet Nam</div>
+          <div class="footer-contact-item">Gio hoc: Thu Hai - Chu Nhat, 7:30 - 21:00 (ICT)</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Kady's English Lessons. Moi quyen duoc bao luu.</p>
+        <p>Thiet ke voi su tan tam danh cho hoc sinh moi trinh do.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="support.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
