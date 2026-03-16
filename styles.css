@@ -440,6 +440,8 @@ body {
   border-radius: var(--radius);
   padding: 36px 30px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 .pricing-card:hover {
@@ -470,18 +472,22 @@ body {
   font-size: 1.25rem;
   color: var(--primary-dk);
   margin-bottom: 8px;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 .pricing-price {
   font-size: 2.6rem;
   font-weight: 700;
   color: var(--text);
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 6px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 5rem;
   line-height: 1;
-  margin: 18px 0 4px;
+  margin: 18px 0 8px;
 }
 .pricing-price sup {
   font-size: 1.3rem;
@@ -490,24 +496,47 @@ body {
   display: inline-block;
 }
 .pricing-price span {
-  display: inline-block;
+  display: block;
   font-size: 0.95rem;
   font-weight: 400;
   color: var(--text-muted);
-  line-height: 1.15;
-  padding-bottom: 0.18rem;
+  line-height: 1.25;
+  margin-top: 8px;
+  min-height: 1.2rem;
 }
 .pricing-desc {
   color: var(--text-muted);
   font-size: 0.9rem;
+  min-height: 2.8rem;
   margin-bottom: 24px;
 }
+
+.pricing-note {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 0 0 14px;
+  min-height: 1.2rem;
+}
+
+.pricing-note.is-empty {
+  visibility: hidden;
+}
+
+.pricing-note-primary {
+  color: var(--primary);
+}
+
+.pricing-note-accent {
+  color: var(--accent-dk);
+}
+
 .pricing-features {
   text-align: left;
   margin: 24px 0 32px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex: 1;
 }
 .pricing-features li {
   font-size: 0.92rem;
@@ -905,6 +934,19 @@ footer {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+  .pricing-title,
+  .pricing-desc,
+  .pricing-price,
+  .pricing-price span,
+  .pricing-note {
+    min-height: 0;
+  }
+  .pricing-note {
+    margin-bottom: 12px;
+  }
+  .pricing-features {
+    flex: initial;
+  }
   .hero { padding: 64px 0 56px; }
   .hero h1 { font-size: 1.9rem; }
   .hero p { font-size: 1rem; }
