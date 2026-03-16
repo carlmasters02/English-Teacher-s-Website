@@ -14,9 +14,19 @@ function setupMobileNavToggle() {
 	const navLinks = nav ? nav.querySelector('.nav-links') : null;
 	if (!navContainer || !navLinks) return;
 
+	const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+	const currentLang = currentPage.startsWith('en_') ? 'en' : 'vi';
+
 	if (!navLinks.id) {
 		navLinks.id = 'site-nav-links';
 	}
+
+	const toggleGroup = document.createElement('div');
+	toggleGroup.className = 'nav-toggle-group';
+
+	const toggleLabel = document.createElement('span');
+	toggleLabel.className = 'nav-toggle-label';
+	toggleLabel.textContent = currentLang === 'en' ? 'Pages' : 'Trang';
 
 	const toggleBtn = document.createElement('button');
 	toggleBtn.type = 'button';
@@ -26,7 +36,8 @@ function setupMobileNavToggle() {
 	toggleBtn.setAttribute('aria-controls', navLinks.id);
 	toggleBtn.innerHTML = '<span></span><span></span><span></span>';
 
-	navContainer.insertBefore(toggleBtn, navLinks);
+	toggleGroup.append(toggleLabel, toggleBtn);
+	navContainer.insertBefore(toggleGroup, navLinks);
 
 	const closeMenu = () => {
 		navLinks.classList.remove('is-open');

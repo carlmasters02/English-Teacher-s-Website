@@ -206,6 +206,20 @@ ul { list-style: none; }
   gap: 4px;
 }
 
+.nav-toggle-group {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-toggle-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
 .nav-toggle span {
   display: block;
   width: 18px;
@@ -897,6 +911,10 @@ footer {
   .nav-toggle {
     display: inline-flex;
     flex-shrink: 0;
+  }
+  .nav-toggle-group {
+    display: inline-flex;
+    margin-left: auto;
   }
   .nav-links {
     display: none;
