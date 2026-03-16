@@ -193,6 +193,22 @@ ul { list-style: none; }
 
 .lang-switch {
   display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.lang-switch-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.lang-switch-control {
+  display: inline-flex;
   align-items: center;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -856,6 +872,10 @@ footer {
   .lang-switch {
     margin-left: 0;
     flex-shrink: 0;
+    align-items: flex-start;
+  }
+  .lang-switch-label {
+    font-size: 0.64rem;
   }
   .hero-cta {
     flex-direction: column;
