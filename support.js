@@ -150,8 +150,12 @@ function setupBackToTopButton() {
 	const btn = document.createElement('button');
 	btn.type = 'button';
 	btn.className = 'back-to-top';
-	btn.setAttribute('aria-label', 'Back to top');
-	btn.textContent = 'â†‘';
+	const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+	const currentLang = currentPage.startsWith('en_') ? 'en' : 'vi';
+	const backToTopLabel = currentLang === 'en' ? 'Back to top' : 'Lên đầu trang';
+	btn.setAttribute('aria-label', backToTopLabel);
+	btn.setAttribute('title', backToTopLabel);
+	btn.innerHTML = '<span aria-hidden="true">&uarr;</span>';
 	document.body.appendChild(btn);
 
 	const toggleVisibility = () => {

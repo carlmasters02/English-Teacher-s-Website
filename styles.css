@@ -285,6 +285,12 @@ ul { list-style: none; }
   color: var(--white);
 }
 
+@media (min-width: 641px) {
+  .nav-links > .lang-switch {
+    margin-left: 24px;
+  }
+}
+
 #google_translate_element,
 .goog-te-banner-frame,
 .goog-te-gadget,
