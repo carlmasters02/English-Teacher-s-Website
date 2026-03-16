@@ -475,6 +475,11 @@ body {
   font-size: 2.6rem;
   font-weight: 700;
   color: var(--text);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
   line-height: 1;
   margin: 18px 0 4px;
 }
@@ -485,9 +490,12 @@ body {
   display: inline-block;
 }
 .pricing-price span {
+  display: inline-block;
   font-size: 0.95rem;
   font-weight: 400;
   color: var(--text-muted);
+  line-height: 1.15;
+  padding-bottom: 0.18rem;
 }
 .pricing-desc {
   color: var(--text-muted);
