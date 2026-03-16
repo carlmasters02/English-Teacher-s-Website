@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
 	setupLanguageSwitch();
 	setupActiveNavLink();
 	setupScrollProgressBar();
@@ -14,7 +14,7 @@ function setupActiveNavLink() {
 	});
 	if (!navLinks.length) return;
 
-	const current = window.location.pathname.split('/').pop() || 'home.html';
+	const current = window.location.pathname.split('/').pop() || 'index.html';
 
 	navLinks.forEach((link) => {
 		link.classList.remove('active');
@@ -30,7 +30,7 @@ function setupLanguageSwitch() {
 	if (!langLinks.length) return;
 
 	const key = 'siteLanguage';
-	const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+	const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 	const currentLang = currentPage.startsWith('en_') ? 'en' : 'vi';
 	localStorage.setItem(key, currentLang);
 
@@ -93,7 +93,7 @@ function setupBackToTopButton() {
 	btn.type = 'button';
 	btn.className = 'back-to-top';
 	btn.setAttribute('aria-label', 'Back to top');
-	btn.textContent = '↑';
+	btn.textContent = 'â†‘';
 	document.body.appendChild(btn);
 
 	const toggleVisibility = () => {
@@ -163,3 +163,4 @@ function setupEnrollForm() {
 		window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
 	});
 }
+
