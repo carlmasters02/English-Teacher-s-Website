@@ -93,7 +93,7 @@
     }
     .radio-option, .checkbox-option {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       padding: 11px 14px;
       border: 1.5px solid var(--border);
@@ -101,6 +101,7 @@
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       font-size: 0.93rem;
+      line-height: 1.45;
     }
     .radio-option:hover, .checkbox-option:hover {
       border-color: var(--primary);
@@ -111,6 +112,7 @@
       width: 16px;
       height: 16px;
       flex-shrink: 0;
+      margin-top: 2px;
     }
     .submit-btn {
       width: 100%;
@@ -120,12 +122,12 @@
     }
     .success-msg {
       display: none;
-      background: #e8f5e9;
-      border: 1px solid #a5d6a7;
+      background: var(--primary-lt);
+      border: 1px solid var(--primary);
       border-radius: var(--radius);
       padding: 20px 24px;
       text-align: center;
-      color: #2e7d32;
+      color: var(--primary-dk);
       font-weight: 600;
       margin-top: 16px;
     }
@@ -164,33 +166,33 @@
         <!-- FORM -->
         <div class="form-card">
           <h2 style="font-size:1.5rem; color:var(--primary-dk); margin-bottom:6px;">Tell Me About Yourself</h2>
-          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:28px;">All fields marked <span style="color:#e55;">*</span> are required. Your information will never be shared with third parties.</p>
+          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:28px;">All fields marked <span style="color:var(--accent);">*</span> are required. Your information will never be shared with third parties.</p>
 
           <form id="enrollForm" novalidate>
 
             <p class="form-section-title">Personal Details</p>
             <div class="form-row">
               <div class="form-group">
-                <label for="firstName">First Name <span style="color:#e55;">*</span></label>
+                <label for="firstName">First Name <span style="color:var(--accent);">*</span></label>
                 <input type="text" id="firstName" name="firstName" placeholder="e.g. Minh" required autocomplete="given-name" />
               </div>
               <div class="form-group">
-                <label for="lastName">Last Name <span style="color:#e55;">*</span></label>
+                <label for="lastName">Last Name <span style="color:var(--accent);">*</span></label>
                 <input type="text" id="lastName" name="lastName" placeholder="e.g. Nguyen" required autocomplete="family-name" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="email">Email Address <span style="color:#e55;">*</span></label>
+                <label for="email">Email Address <span style="color:var(--accent);">*</span></label>
                 <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
               </div>
               <div class="form-group">
-                <label for="phone">Phone / WhatsApp</label>
+                <label for="phone">Phone / Zalo <span style="visibility:hidden; color:var(--accent);">*</span></label>
                 <input type="tel" id="phone" name="phone" placeholder="+84 9xx xxx xxx" autocomplete="tel" />
               </div>
             </div>
             <div class="form-group">
-              <label for="age">Student Grade <span style="color:#e55;">*</span></label>
+              <label for="age">Student Grade <span style="color:var(--accent);">*</span></label>
               <select id="age" name="age" required>
                 <option value="" disabled selected>Select...</option>
                 <option>Grade 5 and below</option>
@@ -206,7 +208,7 @@
 
             <p class="form-section-title">English Level &amp; Goals</p>
             <div class="form-group">
-              <label>Approximate English Level <span style="color:#e55;">*</span></label>
+              <label>Approximate English Level <span style="color:var(--accent);">*</span></label>
               <div class="radio-group">
                 <label class="radio-option"><input type="radio" name="level" value="Lower Secondary (Grade 6-9)" required /> Lower Secondary (Grade 6-9)</label>
                 <label class="radio-option"><input type="radio" name="level" value="High School (Grade 10-11)" /> High School (Grade 10-11)</label>
@@ -216,11 +218,12 @@
             </div>
 
             <div class="form-group">
-              <label>I'm Interested In... (select all that apply) <span style="color:#e55;">*</span></label>
+              <label>I'm Interested In... (select all that apply) <span style="color:var(--accent);">*</span></label>
               <div class="checkbox-group">
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="One-to-One at Teacher Location" /> One-to-One at Teacher's Location</label>
-                <label class="checkbox-option"><input type="checkbox" name="interest" value="Small Group at Teacher Location" /> Small Group at Teacher's Location (2-4 students)</label>
-                <label class="checkbox-option"><input type="checkbox" name="interest" value="One-to-One at Student Residence" /> One-to-One at Student Residence</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Small Group at Teacher Location" /> Small Group at Teacher's Location (2-5 students)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Large Groups at Teacher Location" /> Large Groups at Teacher's Location (8-15 students)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="One-to-One at Student Residence" /> One-to-One at Student Residence (Grades 2-12)</label>
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="National Exam Preparation" /> National Exam Preparation (English)</label>
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="Grammar and Vocabulary" /> Grammar and Vocabulary Strengthening</label>
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="Reading and Writing Skills" /> Reading and Writing Skills</label>
@@ -229,14 +232,14 @@
             </div>
 
             <div class="form-group">
-              <label for="goals">What are your main English goals? <span style="color:#e55;">*</span></label>
+              <label for="goals">What are your main English goals? <span style="color:var(--accent);">*</span></label>
               <textarea id="goals" name="goals" placeholder="e.g. I want to improve my Grade 12 English score for the national exam, especially grammar and reading..." required></textarea>
             </div>
 
             <p class="form-section-title">Scheduling Preferences</p>
             <div class="form-row">
               <div class="form-group">
-                <label for="frequency">How often would you like lessons? <span style="color:#e55;">*</span></label>
+                <label for="frequency">How often would you like lessons? <span style="color:var(--accent);">*</span></label>
                 <select id="frequency" name="frequency" required>
                   <option value="" disabled selected>Select...</option>
                   <option>Once a week</option>
@@ -247,13 +250,14 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="format">Preferred Format <span style="color:#e55;">*</span></label>
+                <label for="format">Preferred Format <span style="color:var(--accent);">*</span></label>
                 <select id="format" name="format" required>
                   <option value="" disabled selected>Select...</option>
                   <option>Open to Any Format</option>
                   <option>One-to-One at Teacher's Location</option>
-                  <option>Small Group at Teacher's Location (2-4 students)</option>
-                  <option>One-to-One at Student Residence</option>
+                  <option>Small Group at Teacher's Location (2-5 students)</option>
+                  <option>Large Groups at Teacher's Location (8-15 students)</option>
+                  <option>One-to-One at Student Residence (Grades 2-12)</option>
                 </select>
               </div>
             </div>
@@ -301,9 +305,9 @@
           </div>
           <div class="sidebar-card">
             <h3>Prefer to Chat First?</h3>
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px; line-height:1.7;">That's totally fine! Drop me a message via email or WhatsApp and we can have a quick call before you commit to anything.</p>
-            <p style="font-size:0.9rem;"><strong>Email:</strong> luongkhadoanh0210@gmail.com</p>
-            <p style="font-size:0.9rem; margin-top:6px;"><strong>Phone:</strong> +84 942 100 829</p>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px; line-height:1.7;">That's totally fine! Drop me a message via email or Zalo and we can have a quick chat before you commit to anything.</p>
+            <p style="font-size:0.9rem;"><strong>Email:</strong> kadyforwork@gmail.com</p>
+            <p style="font-size:0.9rem; margin-top:6px;"><strong>Zalo:</strong> +84 942 100 829</p>
           </div>
           <div class="sidebar-card" style="background:var(--primary-lt); border-color:var(--primary);">
             <div class="stars">★★★★★</div>
@@ -336,8 +340,8 @@
         </div>
         <div>
           <h4 class="footer-heading">Get in Touch</h4>
-          <div class="footer-contact-item">Email: luongkhadoanh0210@gmail.com</div>
-          <div class="footer-contact-item">Phone: +84 942 100 829</div>
+          <div class="footer-contact-item">Email: kadyforwork@gmail.com</div>
+          <div class="footer-contact-item">Zalo: +84 942 100 829</div>
           <div class="footer-contact-item">Location: Can Tho, Vietnam</div>
           <div class="footer-contact-item">Hours: Mon-Sun, 7:30 am - 9:00 pm (ICT)</div>
         </div>

@@ -93,7 +93,7 @@
     }
     .radio-option, .checkbox-option {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       padding: 11px 14px;
       border: 1.5px solid var(--border);
@@ -101,6 +101,7 @@
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       font-size: 0.93rem;
+      line-height: 1.45;
     }
     .radio-option:hover, .checkbox-option:hover {
       border-color: var(--primary);
@@ -111,6 +112,7 @@
       width: 16px;
       height: 16px;
       flex-shrink: 0;
+      margin-top: 2px;
     }
     .submit-btn {
       width: 100%;
@@ -120,12 +122,12 @@
     }
     .success-msg {
       display: none;
-      background: #e8f5e9;
-      border: 1px solid #a5d6a7;
+      background: var(--primary-lt);
+      border: 1px solid var(--primary);
       border-radius: var(--radius);
       padding: 20px 24px;
       text-align: center;
-      color: #2e7d32;
+      color: var(--primary-dk);
       font-weight: 600;
       margin-top: 16px;
     }
@@ -164,33 +166,33 @@
         <!-- FORM -->
         <div class="form-card">
           <h2 style="font-size:1.5rem; color:var(--primary-dk); margin-bottom:6px;">Cho Kady biết thêm về bạn</h2>
-          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:28px;">Tất cả trường có dấu <span style="color:#e55;">*</span> là bắt buộc. Thông tin của bạn sẽ không được chia sẻ cho bên thứ ba.</p>
+          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:28px;">Tất cả trường có dấu <span style="color:var(--accent);">*</span> là bắt buộc. Thông tin của bạn sẽ không được chia sẻ cho bên thứ ba.</p>
 
           <form id="enrollForm" novalidate>
 
             <p class="form-section-title">Thông tin cá nhân</p>
             <div class="form-row">
               <div class="form-group">
-                <label for="firstName">Tên <span style="color:#e55;">*</span></label>
+                <label for="firstName">Tên <span style="color:var(--accent);">*</span></label>
                 <input type="text" id="firstName" name="firstName" placeholder="e.g. Minh" required autocomplete="given-name" />
               </div>
               <div class="form-group">
-                <label for="lastName">Họ <span style="color:#e55;">*</span></label>
+                <label for="lastName">Họ <span style="color:var(--accent);">*</span></label>
                 <input type="text" id="lastName" name="lastName" placeholder="e.g. Nguyen" required autocomplete="family-name" />
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label for="email">Địa chỉ email <span style="color:#e55;">*</span></label>
+                <label for="email">Địa chỉ email <span style="color:var(--accent);">*</span></label>
                 <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
               </div>
               <div class="form-group">
-                <label for="phone">Điện thoại / Zalo</label>
+                <label for="phone">Điện thoại / Zalo <span style="visibility:hidden; color:var(--accent);">*</span></label>
                 <input type="tel" id="phone" name="phone" placeholder="+84 9xx xxx xxx" autocomplete="tel" />
               </div>
             </div>
             <div class="form-group">
-              <label for="age">Khối lớp của học sinh <span style="color:#e55;">*</span></label>
+              <label for="age">Khối lớp của học sinh <span style="color:var(--accent);">*</span></label>
               <select id="age" name="age" required>
                 <option value="" disabled selected>Chọn...</option>
                 <option>Lớp 5 trở xuống</option>
@@ -206,7 +208,7 @@
 
             <p class="form-section-title">Trình độ Tiếng Anh và mục tiêu</p>
             <div class="form-group">
-              <label>Trình độ Tiếng Anh ước lượng <span style="color:#e55;">*</span></label>
+              <label>Trình độ Tiếng Anh ước lượng <span style="color:var(--accent);">*</span></label>
               <div class="radio-group">
                 <label class="radio-option"><input type="radio" name="level" value="THCS (lớp 6-9)" required /> THCS (lớp 6-9)</label>
                 <label class="radio-option"><input type="radio" name="level" value="THPT (lớp 10-11)" /> THPT (lớp 10-11)</label>
@@ -216,11 +218,12 @@
             </div>
 
             <div class="form-group">
-              <label>Tôi quan tâm đến... (có thể chọn nhiều) <span style="color:#e55;">*</span></label>
+              <label>Tôi quan tâm đến... (có thể chọn nhiều) <span style="color:var(--accent);">*</span></label>
               <div class="checkbox-group">
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="1 kèm 1 tại địa điểm giáo viên" /> 1 kèm 1 tại địa điểm giáo viên</label>
-                <label class="checkbox-option"><input type="checkbox" name="interest" value="Nhóm nhỏ tại địa điểm giáo viên" /> Nhóm nhỏ tại địa điểm giáo viên (2-4 học sinh)</label>
-                <label class="checkbox-option"><input type="checkbox" name="interest" value="1 kèm 1 tại nhà học sinh" /> 1 kèm 1 tại nhà học sinh</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Nhóm nhỏ tại địa điểm giáo viên" /> Nhóm nhỏ tại địa điểm giáo viên (2-5 học sinh)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="Nhóm lớn tại địa điểm giáo viên" /> Nhóm lớn tại địa điểm giáo viên (8-15 học sinh)</label>
+                <label class="checkbox-option"><input type="checkbox" name="interest" value="1 kèm 1 tại nhà học sinh" /> 1 kèm 1 tại nhà học sinh (lớp 2-12)</label>
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="Ôn thi quốc gia môn Tiếng Anh" /> Ôn thi quốc gia môn Tiếng Anh</label>
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="Củng cố ngữ pháp và từ vựng" /> Củng cố ngữ pháp và từ vựng</label>
                 <label class="checkbox-option"><input type="checkbox" name="interest" value="Kỹ năng đọc và viết" /> Kỹ năng đọc và viết</label>
@@ -229,14 +232,14 @@
             </div>
 
             <div class="form-group">
-              <label for="goals">Mục tiêu học Tiếng Anh chính của bạn là gì? <span style="color:#e55;">*</span></label>
+              <label for="goals">Mục tiêu học Tiếng Anh chính của bạn là gì? <span style="color:var(--accent);">*</span></label>
               <textarea id="goals" name="goals" placeholder="Ví dụ: Tôi muốn cải thiện điểm Tiếng Anh lớp 12 để thi quốc gia, đặc biệt là ngữ pháp và đọc hiểu..." required></textarea>
             </div>
 
             <p class="form-section-title">Mong muốn về lịch học</p>
             <div class="form-row">
               <div class="form-group">
-                <label for="frequency">Bạn muốn học với tần suất như thế nào? <span style="color:#e55;">*</span></label>
+                <label for="frequency">Tần suất học mong muốn <span style="color:var(--accent);">*</span></label>
                 <select id="frequency" name="frequency" required>
                   <option value="" disabled selected>Chọn...</option>
                   <option>1 buổi/tuần</option>
@@ -247,13 +250,14 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="format">Hình thức học mong muốn <span style="color:#e55;">*</span></label>
+                <label for="format">Hình thức học mong muốn <span style="color:var(--accent);">*</span></label>
                 <select id="format" name="format" required>
                   <option value="" disabled selected>Chọn...</option>
                   <option>Mở cho mọi hình thức học</option>
                   <option>1 kèm 1 tại địa điểm giáo viên</option>
-                  <option>Nhóm nhỏ tại địa điểm giáo viên (2-4 học sinh)</option>
-                  <option>1 kèm 1 tại nhà học sinh</option>
+                  <option>Nhóm nhỏ tại địa điểm giáo viên (2-5 học sinh)</option>
+                  <option>Nhóm lớn tại địa điểm giáo viên (8-15 học sinh)</option>
+                  <option>1 kèm 1 tại nhà học sinh (lớp 2-12)</option>
                 </select>
               </div>
             </div>
@@ -302,7 +306,7 @@
           <div class="sidebar-card">
             <h3>Bạn muốn trao đổi trước?</h3>
             <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px; line-height:1.7;">Hoàn toàn được! Bạn có thể nhắn tin qua email hoặc điện thoại để trao đổi nhanh trước khi quyết định.</p>
-            <p style="font-size:0.9rem;"><strong>Email:</strong> luongkhadoanh0210@gmail.com</p>
+            <p style="font-size:0.9rem;"><strong>Email:</strong> kadyforwork@gmail.com</p>
             <p style="font-size:0.9rem; margin-top:6px;"><strong>Điện thoại:</strong> +84 942 100 829</p>
           </div>
           <div class="sidebar-card" style="background:var(--primary-lt); border-color:var(--primary);">
@@ -336,7 +340,7 @@
         </div>
         <div>
           <h4 class="footer-heading">Liên Hệ</h4>
-          <div class="footer-contact-item">Email: luongkhadoanh0210@gmail.com</div>
+          <div class="footer-contact-item">Email: kadyforwork@gmail.com</div>
           <div class="footer-contact-item">Điện thoại: +84 942 100 829</div>
           <div class="footer-contact-item">Địa điểm: Cần Thơ, Việt Nam</div>
           <div class="footer-contact-item">Giờ học: Thứ Hai - Chủ Nhật, 7:30 - 21:00 (ICT)</div>
